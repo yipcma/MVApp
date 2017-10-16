@@ -464,10 +464,12 @@ function(input, output) {
       )) + length(input$SelectDV)
     
     corrplot.mixed(
-      cor(my_data()[, beginCol:endCol]),
-      order = "hclust",
-      tl.col  = "black"
-    )
+      cor(my_data()[, beginCol:endCol],
+  #    order = "hclust",
+   #   tl.col  = "black",
+      use = input$corUse, 
+      method = input$corMethod
+    ))
   })
   
   output$CorSpecIV <- renderUI({
@@ -526,7 +528,8 @@ function(input, output) {
     my_data2 <- subset(my_data, Cor_baby == input$CorIV_val)
     my_data2 <- na.omit(my_data2)
     corrplot.mixed(
-      cor(my_data2[, beginCol:endCol]),tl.col  = "black"
+      cor(my_data2[, beginCol:endCol]),tl.col  = "black",
+      use = input$corUse, method = input$corMethod
     )
   })
   

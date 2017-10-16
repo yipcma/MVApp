@@ -154,6 +154,10 @@ fluidPage(
       navbarPage(
         "",
         tabPanel("General Correlations",
+                 selectInput("corMethod", "Correlation Method",
+                             eval(formals(cor)$method)),
+                 selectInput("corUse", "NA Action",
+                             c("everything", "all.obs", "complete.obs", "na.or.complete", "pairwise.complete.obs")),
                  plotOutput("corrplot")),
         tabPanel(
           "Subsetted correlations",
